@@ -23,7 +23,11 @@ foreach ($configs as $config) {
     $password = $config['password']; //"在GITEE设置的密码";
     $branch = $config['branch']; //"你需要pull的分支";
     $logName = $config['log_name']; //"LOG名称";
-    $logName = './logs/' . $logName;
+    $logPath = './logs';
+    if (!file_exists($logPath)) {
+        mkdir($logPath);
+    }
+    $logName = $logPath . '/' . $logName;
     file_put_contents("$logName.log", PHP_EOL.date('Y-m-d H:i:s', time()).": ".PHP_EOL, FILE_APPEND);
     $requestBody = file_get_contents("php://input");
     if (empty($requestBody)) {
