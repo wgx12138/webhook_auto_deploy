@@ -50,7 +50,7 @@ foreach ($configs as $config) {
     $content = json_decode($requestBody, true);
     //验证密码
     if($content['password'] == $password){
-	echo 'success';
+	echo json_encode(['ok' => true]);
         //指定分支，有提交时
         if ($content['ref'] == "refs/heads/$branch" && $content['total_commits_count'] > 0) {
             $result = shell_exec("cd $savePath && $git clean -f && $git pull origin $branch 2>&1");
