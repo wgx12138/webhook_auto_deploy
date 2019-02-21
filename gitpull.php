@@ -14,7 +14,7 @@
     ]
    ];
  */
-$configs = __DIR__ . '/config.php';
+$configs = require __DIR__ . '/config.php';
 
 if (empty($configs)) {
     echo '配置为空.';
