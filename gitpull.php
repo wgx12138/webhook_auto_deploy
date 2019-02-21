@@ -50,6 +50,7 @@ foreach ($configs as $config) {
     $content = json_decode($requestBody, true);
     //验证密码
     if($content['password'] == $password){
+	echo 'success';
         //指定分支，有提交时
         if ($content['ref'] == "refs/heads/$branch" && $content['total_commits_count'] > 0) {
             $result = shell_exec("cd $savePath && $git clean -f && $git pull origin $branch 2>&1");
@@ -65,7 +66,6 @@ foreach ($configs as $config) {
                 $cmdLog .= PHP_EOL;
                 file_put_contents("$logName.log", $cmdLog, FILE_APPEND);
             }
-            echo $result;
         }
     } else {
         file_put_contents("$logName.log", 'Password is Incorrect!', FILE_APPEND);
